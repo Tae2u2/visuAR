@@ -1,0 +1,69 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  ADMIN
+  ARTIST
+  FAN_OFFICIAL
+  FAN_UNOFFICIAL
+}
+
+enum PostType {
+  NOTICE   // 공지 (관리자 전용)
+  NORMAL   // 일반 게시글 (아티스트/팬 가능)
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  username String
+  email    String   @unique
+  role     Role
+  posts    Post[]      // 내가 작성한 게시글
+  comments Comment[]   // 내가 작성한 댓글
+  likes    Like[]      // 내가 누른 좋아요
+}
+
+model Post {
+  id        Int       @id @default(autoincrement())
+  title     String
+  content   String
+  type      PostType
+  createdAt DateTime  @default(now())
+
+  author    User      @relation(fields: [authorId], references: [id])
+  authorId  Int
+
+  comments  Comment[]
+  likes     Like[]
+}
+
+model Comment {
+  id        Int       @id @default(autoincrement())
+  content   String
+  createdAt DateTime  @default(now())
+
+  author    User      @relation(fields: [authorId], references: [id])
+  authorId  Int
+
+  post      Post      @relation(fields: [postId], references: [id])
+  postId    Int
+}
+
+model Like {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+
+  user      User      @relation(fields: [userId], references: [id])
+  userId    Int
+
+  post      Post      @relation(fields: [postId], references: [id])
+  postId    Int
+
+  @@unique([userId, postId]) // 같은 게시물에 중복 좋아요 불가
+}

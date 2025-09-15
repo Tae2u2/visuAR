@@ -16,7 +16,7 @@ const Header = () => {
             <Link href="/star">Artist</Link>
           </li>
           <li>
-            <Link href="/fans">Fans</Link>
+            <Link href="/live">LIVE</Link>
           </li>
         </ul>
       </nav>

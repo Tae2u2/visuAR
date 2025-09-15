@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const Fans = () => {
+const IdCard = () => {
   return (
     <div className="w-full max-w-[360px] bg-gray-100 rounded-md p-5 shadow">
       <Image src={"/profile/bang.jpg"} alt="artist" width={120} height={120} />
@@ -17,4 +17,4 @@ const Fans = () => {
   );
 };
 
-export default Fans;
+export default IdCard;

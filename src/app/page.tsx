@@ -1,5 +1,5 @@
 import Artist from "@/components/home/Artist";
-import Fans from "@/components/home/Fans";
+import IdCard from "@/components/home/IdCard";
 import Notice from "@/components/home/Notice";
 import Schedule from "@/components/home/Schedule";
 
@@ -11,7 +11,7 @@ export default function Home() {
         <Schedule />
       </div>
       <Artist />
-      <Fans />
+      <IdCard />
     </div>
   );
 }

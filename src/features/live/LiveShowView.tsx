@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import * as faceapi from "face-api.js";
 
 const EAR_IMAGES: Record<string, string> = {
-  rabbit: "/ears_rabbit.png",
-  cat: "/ears_cat.png",
-  dog: "/ears_dog.png",
+  rabbit: "/filter/rabbit.png",
+  cat: "/filter/cat.png",
+  dog: "/filter/puppy.png",
 };
 
 export default function AnimalEarsLiveWithSelector() {
@@ -34,10 +34,16 @@ export default function AnimalEarsLiveWithSelector() {
   // 비디오 + 캔버스 루프
   useEffect(() => {
     if (!modelsLoaded) return;
+
     const video = videoRef.current!;
     const canvas = canvasRef.current!;
     const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
     let animationFrameId: number;
+
+    // 귀 이미지 로드
+    const earImg = new Image();
+    earImg.src = EAR_IMAGES[earType];
+    earImg.onload = () => (earImgRef.current = earImg);
 
     const startVideo = async () => {
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -46,6 +52,7 @@ export default function AnimalEarsLiveWithSelector() {
       });
       video.srcObject = stream;
       await video.play();
+
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
 
@@ -53,49 +60,60 @@ export default function AnimalEarsLiveWithSelector() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
+        if (!earImgRef.current) {
+          animationFrameId = requestAnimationFrame(render);
+          return;
+        }
+
         const detections = await faceapi
           .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
           .withFaceLandmarks(true);
 
         detections.forEach((d) => {
           const landmarks = d.landmarks;
+
+          // 얼굴 랜드마크
           const leftEye = landmarks.getLeftEye();
           const rightEye = landmarks.getRightEye();
-
-          const eyeCenterX = (leftEye[0].x + rightEye[3].x) / 2;
-          const eyeCenterY = (leftEye[0].y + rightEye[3].y) / 2;
-
+          const leftEyebrow = landmarks.getLeftEyeBrow();
+          const rightEyebrow = landmarks.getRightEyeBrow();
           const jaw = landmarks.getJawOutline();
-          const faceWidth = Math.abs(jaw[jaw.length - 1].x - jaw[0].x);
 
+          const faceCenterX = (leftEye[0].x + rightEye[3].x) / 2;
+          const faceWidth = Math.abs(jaw[jaw.length - 1].x - jaw[0].x);
+          const faceHeight = jaw[jaw.length - 1].y - jaw[0].y;
+
+          // 정수리 위치 계산
+          const eyeBrowTopY = Math.min(
+            ...leftEyebrow.map((p) => p.y),
+            ...rightEyebrow.map((p) => p.y)
+          );
+          const crownY = eyeBrowTopY - faceHeight * 0.25;
+
+          // 귀 크기
           const earWidth = faceWidth * 0.6;
           const earHeight = earWidth * 1.2;
-          const earCenterX = eyeCenterX;
-          const earCenterY = eyeCenterY - faceWidth * 0.55;
-          const earLeftX = earCenterX - earWidth / 2 - (earWidth * 0.35) / 2;
-          const earRightX = earCenterX - earWidth / 2 + (earWidth * 0.35) / 2;
 
-          if (earImgRef.current) {
-            ctx.save();
-            ctx.translate(earLeftX + earWidth / 2, earCenterY);
-            ctx.scale(-1, 1);
-            ctx.drawImage(
-              earImgRef.current,
-              -earWidth / 2,
-              -earHeight / 2,
-              earWidth,
-              earHeight
-            );
-            ctx.restore();
+          // 좌우 귀 위치
+          const earLeftX = faceCenterX - earWidth * 0.75;
+          const earRightX = faceCenterX + earWidth * 0.15;
+          const earY = crownY;
 
-            ctx.drawImage(
-              earImgRef.current,
-              earRightX,
-              earCenterY - earHeight / 2,
-              earWidth,
-              earHeight
-            );
-          }
+          // 귀 그리기
+          ctx.drawImage(
+            earImgRef.current!,
+            earLeftX,
+            earY - earHeight / 2,
+            earWidth,
+            earHeight
+          );
+          ctx.drawImage(
+            earImgRef.current!,
+            earRightX,
+            earY - earHeight / 2,
+            earWidth,
+            earHeight
+          );
         });
 
         animationFrameId = requestAnimationFrame(render);
@@ -114,11 +132,34 @@ export default function AnimalEarsLiveWithSelector() {
     };
   }, [modelsLoaded, earType]);
 
+  useEffect(() => {
+    async function enableWebcam() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+          audio: false,
+        });
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+        }
+      } catch (err) {
+        console.error("웹캠 접근 실패:", err);
+      }
+    }
+
+    enableWebcam();
+  }, []);
+
   return (
     <div className="w-full flex flex-col items-center gap-4 p-4">
       <h2 className="text-xl font-semibold">Animal Ears Live Demo</h2>
       <div className="relative w-full max-w-3xl bg-black">
-        <video ref={videoRef} style={{ display: "none" }} />
+        <video
+          ref={videoRef}
+          style={{ display: "none" }}
+          autoPlay
+          playsInline
+        />
         <canvas ref={canvasRef} className="w-full" />
       </div>
 

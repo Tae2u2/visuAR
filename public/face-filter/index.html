@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Face Filter App</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- MediaPipe CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="loading" class="loading">
+        카메라와 AI 모델을 불러오는 중입니다
+      </div>
+
+      <div id="error" class="error" style="display: none">
+        오류가 발생했습니다. 브라우저를 새로고침해주세요.
+      </div>
+
+      <div class="video-container" style="display: none">
+        <video id="video" autoplay muted playsinline></video>
+        <canvas id="canvas"></canvas>
+      </div>
+
+      <div class="controls" id="controls" style="display: none">
+        <!-- 동적으로 생성됨 -->
+      </div>
+
+      <div class="controls" id="clear-controls" style="display: none">
+        <button class="clear-btn" onclick="clearFilter()">✨ 필터 제거</button>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

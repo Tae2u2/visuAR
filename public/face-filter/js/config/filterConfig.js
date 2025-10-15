@@ -30,6 +30,19 @@ export const filterConfigs = {
     color: "pink",
     animation: "float",
   },
+  ribbon: {
+    image: "./images/ribbon.png",
+    scale: 0.15,
+    offsetY: -120,
+    landmarks: [234, 454], // 양쪽 관자놀이 (머리 장식 위치)
+  },
+  sunglasses: {
+    image: "./images/sunglass.png",
+    scale: 0.6,
+    offsetY: -200,
+    landmarks: [168], // 코 브릿지 (안경 중심점)
+    useEyeWidth: true, // 눈 너비 기반 크기 조정
+  },
 };
 
 export const filterButtons = [
@@ -38,4 +51,6 @@ export const filterButtons = [
   { id: "dog", emoji: "🐶", name: "강아지" },
   { id: "sparkles", emoji: "✨", name: "반짝이" },
   { id: "hearts", emoji: "💕", name: "하트" },
+  { id: "ribbon", emoji: "🎀", name: "리본" },
+  { id: "sunglasses", emoji: "🕶️", name: "선글라스" },
 ];

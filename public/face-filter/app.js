@@ -29,10 +29,15 @@ class FaceFilterApp {
   onResults(results) {
     if (!this.ctx || !this.canvas) return;
 
-    this.canvas.width = 640;
-    this.canvas.height = 480;
+    this.canvas.width = 400;
+    this.canvas.height = 1200;
 
+    this.ctx.save();
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    // 셀카 모드 미러링 (좌우 반전)
+    this.ctx.translate(this.canvas.width, 0);
+    this.ctx.scale(-1, 1);
 
     // 얼굴이 감지되고 현재 필터가 설정되어 있으면
     if (
@@ -51,6 +56,8 @@ class FaceFilterApp {
         console.warn("불완전한 랜드마크 데이터");
       }
     }
+
+    this.ctx.restore();
   }
 
   /**
@@ -93,8 +100,8 @@ class FaceFilterApp {
       this.video = document.getElementById("video");
       this.ctx = this.canvas.getContext("2d");
 
-      // 6. 카메라 시작
-      await this.faceDetector.startCamera(this.video, 640, 480);
+      // 6. 카메라 시작 (세로형: 480x672)
+      await this.faceDetector.startCamera(this.video, 400, 1200);
 
       // 7. UI 업데이트
       this.uiController.hideLoading();

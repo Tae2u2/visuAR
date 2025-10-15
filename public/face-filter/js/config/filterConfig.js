@@ -3,19 +3,19 @@ export const filterConfigs = {
   rabbit: {
     image: "./images/rabbit.png",
     scale: 0.5,
-    offsetY: -130,
+    offsetY: -110,
     landmarks: [10],
   },
   cat: {
     image: "./images/cat.png",
     scale: 0.4,
-    offsetY: -100,
+    offsetY: -60,
     landmarks: [10],
   },
   dog: {
     image: "./images/puppy.png",
     scale: 0.4,
-    offsetY: -80,
+    offsetY: -60,
     landmarks: [10],
   },
   sparkles: {
@@ -33,14 +33,14 @@ export const filterConfigs = {
   ribbon: {
     image: "./images/ribbon.png",
     scale: 0.15,
-    offsetY: -120,
+    offsetY: -50,
     landmarks: [234, 454], // 양쪽 관자놀이 (머리 장식 위치)
   },
   sunglasses: {
     image: "./images/sunglass.png",
-    scale: 0.6,
-    offsetY: -200,
-    landmarks: [168], // 코 브릿지 (안경 중심점)
+    scale: 0.1,
+    offsetY: -110,
+    landmarks: [168], // 코 브릿지 (안경 중심점
     useEyeWidth: true, // 눈 너비 기반 크기 조정
   },
 };

@@ -31,7 +31,7 @@ export class ImageRenderer extends BaseRenderer {
       }
 
       const imgWidth = img.width * scale;
-      const imgHeight = img.height * scale * 2;
+      const imgHeight = img.height * scale;
 
       const drawX = x - imgWidth / 2;
 

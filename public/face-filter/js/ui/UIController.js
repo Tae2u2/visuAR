@@ -23,6 +23,26 @@ export class UIController {
   }
 
   /**
+   * 컬러 필터 버튼 생성
+   * @param {Array} colorFilters - 컬러 필터 설정 배열
+   * @param {Function} onColorFilterChange - 컬러 필터 변경 콜백 함수
+   */
+  createColorFilterButtons(colorFilters, onColorFilterChange) {
+    const container = document.getElementById("color-filters-container");
+    if (!container) return;
+
+    colorFilters.forEach((filter) => {
+      const button = document.createElement("button");
+      button.className = "color-filter-btn";
+      button.id = `${filter.id}-btn`;
+      button.textContent = filter.name;
+      button.onclick = () => onColorFilterChange(filter.id);
+      button.dataset.filterId = filter.id;
+      container.appendChild(button);
+    });
+  }
+
+  /**
    * 버튼 활성화 상태 업데이트
    * @param {HTMLElement} activeButton - 활성화할 버튼
    */

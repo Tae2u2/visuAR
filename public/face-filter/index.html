@@ -24,10 +24,31 @@
       <div class="video-container" style="display: none">
         <video id="video" autoplay muted playsinline></video>
         <canvas id="canvas"></canvas>
+        <!-- 디버그 정보 패널 -->
+        <div id="debug-panel" class="debug-panel" style="display: none">
+          <div class="debug-info">
+            <h3>랜드마크 정보</h3>
+            <div id="debug-content"></div>
+          </div>
+        </div>
       </div>
-
-      <div id="control-buttons-container">
-        <button class="clear-btn" onclick="clearFilter()">🗑️</button>
+      <div class="control-buttons-container color-controls">
+        <div id="color-filters-container" class="color-filters-wrapper">
+          <!-- 동적으로 생성됨 -->
+        </div>
+      </div>
+      <!-- 필터 버튼 컨테이너 -->
+      <div class="control-buttons-container filter-controls">
+        <button class="clear-btn" onclick="clearFilter()" title="필터 제거">
+          필터 제거
+        </button>
+        <button
+          class="debug-btn"
+          onclick="toggleDebugMode()"
+          title="디버그 모드"
+        >
+          🔍
+        </button>
         <div class="controls" id="controls" style="display: none">
           <!-- 동적으로 생성됨 -->
         </div>

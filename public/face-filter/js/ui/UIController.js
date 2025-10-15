@@ -15,7 +15,7 @@ export class UIController {
     this.filterButtons.forEach((filter) => {
       const button = document.createElement("button");
       button.className = "filter-btn";
-      button.textContent = `${filter.emoji} ${filter.name}`;
+      button.textContent = `${filter.emoji}`;
       button.onclick = () => onFilterChange(filter.id, button);
       button.dataset.filter = filter.id;
       controls.appendChild(button);

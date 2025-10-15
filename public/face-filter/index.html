@@ -26,12 +26,11 @@
         <canvas id="canvas"></canvas>
       </div>
 
-      <div class="controls" id="controls" style="display: none">
-        <!-- 동적으로 생성됨 -->
-      </div>
-
-      <div class="controls" id="clear-controls" style="display: none">
-        <button class="clear-btn" onclick="clearFilter()">✨ 필터 제거</button>
+      <div id="control-buttons-container">
+        <button class="clear-btn" onclick="clearFilter()">🗑️</button>
+        <div class="controls" id="controls" style="display: none">
+          <!-- 동적으로 생성됨 -->
+        </div>
       </div>
     </div>
 

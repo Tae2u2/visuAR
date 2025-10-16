@@ -1,10 +1,20 @@
 // 필터 설정 및 상수
 export const filterConfigs = {
   rabbit: {
-    image: "./images/rabbit.png",
-    scale: 0.5,
-    offsetY: -110,
+    type: "model",
+    model: "./images/rabbit.glb",
+    scale: 0.08,
+    offsetY: 10,
     landmarks: [10],
+    followHeadPose: true,
+  },
+  raccoon: {
+    type: "model",
+    model: "./images/raccoon.glb",
+    scale: 0.07,
+    offsetY: 10,
+    landmarks: [10],
+    followHeadPose: true,
   },
   cat: {
     image: "./images/cat.png",
@@ -47,6 +57,7 @@ export const filterConfigs = {
 
 export const filterButtons = [
   { id: "rabbit", emoji: "🐰", name: "토끼" },
+  { id: "raccoon", emoji: "🦝", name: "라쿤" },
   { id: "cat", emoji: "🐱", name: "고양이" },
   { id: "dog", emoji: "🐶", name: "강아지" },
   { id: "sparkles", emoji: "✨", name: "반짝이" },

@@ -30,7 +30,7 @@ class FaceFilterApp {
    * MediaPipe 얼굴 감지 결과 콜백
    * @param {Object} results - 얼굴 감지 결과
    */
-  onResults(results) {
+  async onResults(results) {
     if (!this.ctx || !this.canvas) return;
 
     // 비디오 실제 크기에 맞춰 캔버스 크기 설정
@@ -66,7 +66,7 @@ class FaceFilterApp {
         if (this.filterManager.hasActiveFilter()) {
           const currentFilter = this.filterManager.getCurrentFilter();
           const config = filterConfigs[currentFilter];
-          this.filterRenderer.applyFilter(this.ctx, landmarks, config);
+          await this.filterRenderer.applyFilter(this.ctx, landmarks, config);
         }
       } else {
         console.warn("불완전한 랜드마크 데이터");

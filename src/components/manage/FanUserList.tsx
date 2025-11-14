@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { SectionTitle } from "../util/Text";
 
 interface FanUser {
   id: number;
@@ -26,23 +27,58 @@ interface ModalState {
 }
 
 const generateFanUsers = (count: number): FanUser[] => {
-  const names = ['김', '이', '박', '최', '정', '강', '조', '윤', '장', '임'];
-  const lastNames = ['민수', '영희', '철수', '혜진', '준호', '소영', '동현', '미정', '성민', '유진'];
-  const nicknamePrefixes = ['팬', '스타', '아이돌', '음악', '사랑', '행복', '꿈꾸는', '열정', '멋진', '예쁜'];
-  const nicknameSuffixes = ['러버', '매니아', '팬', '홀릭', '킹', '퀸', '123', '456', '789', '2024'];
+  const names = ["김", "이", "박", "최", "정", "강", "조", "윤", "장", "임"];
+  const lastNames = [
+    "민수",
+    "영희",
+    "철수",
+    "혜진",
+    "준호",
+    "소영",
+    "동현",
+    "미정",
+    "성민",
+    "유진",
+  ];
+  const nicknamePrefixes = [
+    "팬",
+    "스타",
+    "아이돌",
+    "음악",
+    "사랑",
+    "행복",
+    "꿈꾸는",
+    "열정",
+    "멋진",
+    "예쁜",
+  ];
+  const nicknameSuffixes = [
+    "러버",
+    "매니아",
+    "팬",
+    "홀릭",
+    "킹",
+    "퀸",
+    "123",
+    "456",
+    "789",
+    "2024",
+  ];
 
   return Array.from({ length: count }, (_, index) => {
     const id = index + 1;
     const firstName = names[Math.floor(Math.random() * names.length)];
     const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
-    const nickPrefix = nicknamePrefixes[Math.floor(Math.random() * nicknamePrefixes.length)];
-    const nickSuffix = nicknameSuffixes[Math.floor(Math.random() * nicknameSuffixes.length)];
+    const nickPrefix =
+      nicknamePrefixes[Math.floor(Math.random() * nicknamePrefixes.length)];
+    const nickSuffix =
+      nicknameSuffixes[Math.floor(Math.random() * nicknameSuffixes.length)];
 
     return {
       id,
       membership: Math.random() > 0.3,
       name: firstName + lastName,
-      userId: `user_${id.toString().padStart(4, '0')}`,
+      userId: `user_${id.toString().padStart(4, "0")}`,
       nickname: nickPrefix + nickSuffix,
       reportCount: Math.floor(Math.random() * 5),
       warningCount: Math.floor(Math.random() * 3),
@@ -135,15 +171,11 @@ const FanUserList = () => {
   };
 
   return (
-    <div className="w-full">
-      <h2 className="text-base font-bold mb-2 px-2 tracking-tighter">
-        팬 사용자 관리
-      </h2>
-
-      <div className="overflow-x-auto">
+    <div className="w-full bg-white pb-5 shadow rounded">
+      <div className="overflow-x-auto p-5">
         <table className="w-full border-collapse">
           <thead>
-            <tr className="bg-blue-700 font-sans font-normal text-white">
+            <tr className="bg-slate-100 text-slate-500">
               <th className="px-4 py-2 text-left">membership</th>
               <th className="px-4 py-2 text-left">name</th>
               <th className="px-4 py-2 text-left">ID</th>
@@ -159,15 +191,15 @@ const FanUserList = () => {
                 className="hover:bg-gray-50 cursor-pointer"
                 onContextMenu={(e) => handleRightClick(e, user)}
               >
-                <td className="border-y border-gray-300 px-4 py-2">
+                <td className="border-y border-gray-300 px-4 py-2 text-slate-700">
                   <span
-                    className={`px-2 py-1 rounded text-sm ${
+                    className={`flex justify-center py-[2px] w-[72px] font-light text-center font-sans rounded text-sm border-[1px] ${
                       user.membership
-                        ? "bg-green-100 text-green-800"
-                        : "bg-gray-100 text-gray-800"
+                        ? "bg-green-100 text-green-600 font-semibold border-green-600"
+                        : "bg-gray-100 text-gray-400 font-semibold border-gray-600"
                     }`}
                   >
-                    {user.membership ? "멤버십" : "일반"}
+                    {user.membership ? "member" : "basic"}
                   </span>
                 </td>
                 <td className="border-y border-gray-300 px-4 py-2">
@@ -185,7 +217,7 @@ const FanUserList = () => {
                       user.reportCount > 0 ? "text-red-600 font-semibold" : ""
                     }`}
                   >
-                    {user.reportCount}
+                    {user.reportCount > 0 ? user.reportCount : "-"}
                   </span>
                 </td>
                 <td className="border-y border-gray-300 px-4 py-2">
@@ -196,7 +228,7 @@ const FanUserList = () => {
                         : ""
                     }`}
                   >
-                    {user.warningCount}
+                    {user.warningCount > 0 ? user.warningCount : "-"}
                   </span>
                 </td>
               </tr>
@@ -274,7 +306,7 @@ const FanUserList = () => {
 
       <div className="mt-4 flex justify-center items-center space-x-2">
         <button
-          onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+          onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
           disabled={currentPage === 1}
           className="px-3 py-1 border border-gray-300 rounded bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
         >
@@ -311,7 +343,9 @@ const FanUserList = () => {
         </div>
 
         <button
-          onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+          onClick={() =>
+            setCurrentPage((prev) => Math.min(totalPages, prev + 1))
+          }
           disabled={currentPage === totalPages}
           className="px-3 py-1 border border-gray-300 rounded bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
         >
@@ -320,7 +354,8 @@ const FanUserList = () => {
       </div>
 
       <div className="mt-2 text-center text-sm text-gray-600">
-        {startIndex + 1}-{Math.min(endIndex, allFanUsers.length)} / {allFanUsers.length}명
+        {startIndex + 1}-{Math.min(endIndex, allFanUsers.length)} /{" "}
+        {allFanUsers.length}명
       </div>
     </div>
   );

@@ -4,12 +4,10 @@ import FanUserList from "@/components/manage/FanUserList";
 
 const SettingPage = () => {
   return (
-    <div className="w-full flex flex-col gap-5">
-      <div className="flex gap-5 ">
-        <ArtistLiveAsk />
-        <FanUserList />
-      </div>
+    <div className="w-full flex flex-col gap-5 pl-[200px]">
+      <ArtistLiveAsk />
       <MembershipChart />
+      <FanUserList />
     </div>
   );
 };

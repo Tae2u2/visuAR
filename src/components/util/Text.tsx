@@ -27,7 +27,7 @@ export const ArtistBadge = ({ artistName }: { artistName: string }) => {
 
 export const SectionTitle = ({ text }: { text: string }) => {
   return (
-    <h4 className="w-full py-3 font-bold bg-blue-700 text-white px-5">
+    <h4 className="w-full py-3 font-roboto font-bold bg-sky-600 text-white px-5">
       {text}
     </h4>
   );

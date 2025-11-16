@@ -3,7 +3,7 @@ import React from "react";
 
 const Header = () => {
   return (
-    <div className="absolute top-0 w-full h-16 bg-black text-white px-5">
+    <div className="absolute top-0 w-full h-16 bg-slate-800 text-white px-5">
       <nav className="h-full flex justify-between items-center">
         <Link href="/" className="font-extrabold">
           VISUAR

@@ -35,6 +35,7 @@ const ArtistLiveAsk = () => {
     <ul className="flex gap-3 w-full p-5 bg-white shadow">
       {noticeMockData.map((noticeItem) => (
         <ColorCardWidget
+          key={noticeItem.text + noticeItem.time}
           text={noticeItem.text}
           time={noticeItem.time}
           type={noticeItem.type}

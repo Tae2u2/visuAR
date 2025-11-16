@@ -8,7 +8,7 @@ import React from "react";
 
 const StarPage = () => {
   return (
-    <div className="flex gap-5 w-full">
+    <div className="flex gap-5 w-full p-5">
       <ContentsByArtist />
       <div className="flex lg:flex-nowrap flex-wrap lg:flex-row flex-col-reverse justify-start items-start w-full gap-5">
         <FanSection />

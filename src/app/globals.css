@@ -1,1 +1,119 @@
 @import "tailwindcss";
+
+/* ====== Tailwick 스타일 기반 FullCalendar 커스텀 ====== */
+
+/* 전체 달력 박스 */
+.fc {
+  font-family: var(--font-sans, ui-sans-serif, system-ui);
+  color: #111;
+}
+
+/* 헤더 중앙정렬 + 버튼 스타일 */
+.fc-toolbar.fc-header-toolbar {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 버튼 공통 스타일 */
+.fc button {
+  background: linear-gradient(to bottom right, #6366f1, #4f46e5);
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.fc button:hover {
+  background: linear-gradient(to bottom right, #4f46e5, #4338ca);
+  transform: translateY(-0.2px);
+}
+
+.fc button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* 제목 텍스트(Month 2025 같은거) */
+.fc-toolbar-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* 요일 헤더 */
+.fc-col-header-cell {
+  padding: 8px;
+  background: #fafafa;
+  font-size: 14px;
+  font-weight: 600;
+  border-bottom: 1px solid #e5e7eb;
+  color: #6b7280;
+}
+
+/* 날짜 셀 */
+.fc-daygrid-day {
+  border: 1px solid #f1f1f3;
+}
+
+.fc-daygrid-day-number {
+  padding: 6px 8px;
+  font-size: 13px;
+  color: #374151;
+}
+
+/* 오늘 날짜 표시 */
+.fc-day-today {
+  background: #eef2ff !important;
+  border: 2px solid #6366f1 !important;
+}
+
+.fc-day-today .fc-daygrid-day-number {
+  color: #4f46e5;
+  font-weight: 700;
+}
+
+/* 주말 컬러 */
+.fc-day-sat .fc-daygrid-day-number {
+  color: #3b82f6;
+}
+.fc-day-sun .fc-daygrid-day-number {
+  color: #ef4444;
+}
+
+/* 이벤트 카드 */
+.fc-event {
+  background: #6366f1 !important;
+  padding: 4px 6px !important;
+  border-radius: 6px !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: transform 0.1s ease;
+}
+
+.fc-event:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* 이벤트 타임 + 타이틀 */
+.fc-event-time {
+  font-weight: 600;
+  color: #6366f1;
+}
+.fc-event-title {
+  font-size: 13px;
+}
+
+/* grid 오늘 위치 highlight 최소화 */
+.fc-highlight {
+  background: rgba(99, 102, 241, 0.1);
+}
+
+/* 스크롤 이벤트 list style */
+.fc-timegrid-event {
+  border-left: 4px solid #6366f1 !important;
+  background: #f9fafb !important;
+}

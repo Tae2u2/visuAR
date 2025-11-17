@@ -1,12 +1,15 @@
+import LiveShowSchedule from "@/features/live/LiveShowSchedule";
+
 const LivePage = () => {
   return (
-    <div className="w-full h-screen">
+    <div className="flex w-full h-screen p-5 gap-5">
       <iframe
         src="face-filter/index.html"
-        width="100%"
-        height="900px"
-        className="border-0"
+        width="800px"
+        height="800px"
+        className="border-0 w-full"
       />
+      <LiveShowSchedule />
     </div>
   );
 };

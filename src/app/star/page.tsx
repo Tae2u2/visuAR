@@ -3,7 +3,7 @@ import ArtistSection from "@/components/artist/ArtistSection";
 import ContentsByArtist from "@/components/artist/ContentsByArtist";
 import FanSection from "@/components/artist/FanSection";
 import LiveSection from "@/components/artist/LiveSection";
-import AnimalEarsLiveWithSelector from "@/features/live/LiveShowView";
+import AnimalEarsLiveWithSelector from "@/features/live/LiveShowSchedule";
 import React from "react";
 
 const StarPage = () => {

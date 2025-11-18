@@ -1,4 +1,4 @@
-import AnimalEarsLiveWithSelector from "@/features/live/LiveShowSchedule";
+import AnimalEarsLiveWithSelector from "@/features/live/liveSchedule/LiveShowSchedule";
 import { SectionTitle } from "../util/Text";
 import { Button } from "../util/Custom";
 

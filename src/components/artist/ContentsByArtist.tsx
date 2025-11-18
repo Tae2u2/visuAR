@@ -85,7 +85,7 @@ const ContentsByArtist = () => {
   return (
     <div className="flex min-h-screen">
       {/* 좌측 멤버 리스트 위젯 */}
-      <div className="fixed left-[280px] top-24 w-48 bg-white border border-slate-300 rounded-lg shadow-lg p-4 z-10">
+      <div className="fixed left-[280px] top-32 w-48 bg-white border border-slate-300 rounded-lg shadow-lg p-4 z-10">
         <div className="flex flex-col gap-2">
           <button
             onClick={() => setSelectedMember(null)}

@@ -1,16 +1,20 @@
-import LiveShowSchedule from "@/features/live/LiveShowSchedule";
+import BreadCrumb from "@/components/layout/util/BreadCrumb";
+import LiveAskList from "@/features/live/LiveAskList";
 
 const LivePage = () => {
   return (
-    <div className="flex w-full h-screen p-5 gap-5">
-      <iframe
-        src="face-filter/index.html"
-        width="800px"
-        height="800px"
-        className="border-0 w-full"
-      />
-      <LiveShowSchedule />
-    </div>
+    <>
+      <BreadCrumb title={"Live Check"} category={"live"} locate={"check"} />
+      <div className="flex w-full h-screen p-5 gap-5">
+        <iframe
+          src="face-filter/index.html"
+          width="800px"
+          height="800px"
+          className="border-0 w-full"
+        />
+        <LiveAskList />
+      </div>
+    </>
   );
 };
 

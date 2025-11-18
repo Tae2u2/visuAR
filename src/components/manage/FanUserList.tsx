@@ -26,68 +26,8 @@ interface ModalState {
   user: FanUser | null;
 }
 
-const generateFanUsers = (count: number): FanUser[] => {
-  const names = ["김", "이", "박", "최", "정", "강", "조", "윤", "장", "임"];
-  const lastNames = [
-    "민수",
-    "영희",
-    "철수",
-    "혜진",
-    "준호",
-    "소영",
-    "동현",
-    "미정",
-    "성민",
-    "유진",
-  ];
-  const nicknamePrefixes = [
-    "팬",
-    "스타",
-    "아이돌",
-    "음악",
-    "사랑",
-    "행복",
-    "꿈꾸는",
-    "열정",
-    "멋진",
-    "예쁜",
-  ];
-  const nicknameSuffixes = [
-    "러버",
-    "매니아",
-    "팬",
-    "홀릭",
-    "킹",
-    "퀸",
-    "123",
-    "456",
-    "789",
-    "2024",
-  ];
-
-  return Array.from({ length: count }, (_, index) => {
-    const id = index + 1;
-    const firstName = names[Math.floor(Math.random() * names.length)];
-    const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
-    const nickPrefix =
-      nicknamePrefixes[Math.floor(Math.random() * nicknamePrefixes.length)];
-    const nickSuffix =
-      nicknameSuffixes[Math.floor(Math.random() * nicknameSuffixes.length)];
-
-    return {
-      id,
-      membership: Math.random() > 0.3,
-      name: firstName + lastName,
-      userId: `user_${id.toString().padStart(4, "0")}`,
-      nickname: nickPrefix + nickSuffix,
-      reportCount: Math.floor(Math.random() * 5),
-      warningCount: Math.floor(Math.random() * 3),
-    };
-  });
-};
-
 const FanUserList = () => {
-  const [allFanUsers] = useState<FanUser[]>(() => generateFanUsers(1300));
+  const [allFanUsers, setAllFanUser] = useState<FanUser[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
@@ -138,6 +78,66 @@ const FanUserList = () => {
     setContextMenu({ isOpen: false, x: 0, y: 0, selectedUser: null });
   };
 
+  const generateFanUsers = (count: number): FanUser[] => {
+    const names = ["김", "이", "박", "최", "정", "강", "조", "윤", "장", "임"];
+    const lastNames = [
+      "민수",
+      "영희",
+      "철수",
+      "혜진",
+      "준호",
+      "소영",
+      "동현",
+      "미정",
+      "성민",
+      "유진",
+    ];
+    const nicknamePrefixes = [
+      "팬",
+      "스타",
+      "아이돌",
+      "음악",
+      "사랑",
+      "행복",
+      "꿈꾸는",
+      "열정",
+      "멋진",
+      "예쁜",
+    ];
+    const nicknameSuffixes = [
+      "러버",
+      "매니아",
+      "팬",
+      "홀릭",
+      "킹",
+      "퀸",
+      "123",
+      "456",
+      "789",
+      "2024",
+    ];
+
+    return Array.from({ length: count }, (_, index) => {
+      const id = index + 1;
+      const firstName = names[Math.floor(Math.random() * names.length)];
+      const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+      const nickPrefix =
+        nicknamePrefixes[Math.floor(Math.random() * nicknamePrefixes.length)];
+      const nickSuffix =
+        nicknameSuffixes[Math.floor(Math.random() * nicknameSuffixes.length)];
+
+      return {
+        id,
+        membership: Math.random() > 0.3,
+        name: firstName + lastName,
+        userId: `user_${id.toString().padStart(4, "0")}`,
+        nickname: nickPrefix + nickSuffix,
+        reportCount: Math.floor(Math.random() * 5),
+        warningCount: Math.floor(Math.random() * 3),
+      };
+    });
+  };
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -156,6 +156,10 @@ const FanUserList = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [contextMenu.isOpen]);
+
+  useEffect(() => {
+    setAllFanUser(() => generateFanUsers(1300));
+  }, []);
 
   const getModalTitle = () => {
     switch (modal.type) {
@@ -185,7 +189,7 @@ const FanUserList = () => {
             </tr>
           </thead>
           <tbody>
-            {currentFanUsers.map((user) => (
+            {currentFanUsers?.map((user) => (
               <tr
                 key={user.id}
                 className="hover:bg-gray-50 cursor-pointer"

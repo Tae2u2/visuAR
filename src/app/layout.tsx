@@ -1,26 +1,24 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Sans, Roboto } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import Container from "@/components/layout/Container";
+import Provider from "@/components/layout/Provider";
 
 export const roboto = Roboto({
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
   variable: "--font-roboto",
   display: "swap",
 });
 
 export const inter = Inter({
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
 });
 
 export const notoSansKR = Noto_Sans({
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
   variable: "--font-noto-sans-kr",
   display: "swap",
@@ -37,13 +35,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${roboto.variable} ${inter.variable} ${notoSansKR.variable} font-sans`}
       >
-        <Header />
-        <Container>{children}</Container>
-        <Footer />
+        <Provider>{children}</Provider>
       </body>
     </html>
   );

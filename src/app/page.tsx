@@ -1,3 +1,5 @@
+"use client";
+
 import ArtistLiveAsk from "@/components/manage/ArtistLiveAsk";
 import MembershipChart from "@/components/manage/chart/MembershipChart";
 import FanUserList from "@/components/manage/FanUserList";

@@ -5,6 +5,8 @@ import { IconWidget } from "../util.tsx/DataWidget";
 import { FiUserMinus, FiUserPlus, FiUsers } from "react-icons/fi";
 import { BiIdCard } from "react-icons/bi";
 import DailyLineChart from "./DailyLineChart";
+import CumulativeBarChart from "./CumulativeBarChart";
+import MembershipDonutChart from "./MembershipDonutChart";
 
 interface MembershipChartProps {
   className?: string;
@@ -47,7 +49,11 @@ const MembershipChart: React.FC<MembershipChartProps> = ({
           icon={<FiUserMinus size={20} color="orange" />}
         />
       </div>
-      <DailyLineChart />
+      <div className="flex justify-between gap-5">
+        <DailyLineChart />
+        <CumulativeBarChart />
+        <MembershipDonutChart />
+      </div>
     </div>
   );
 };

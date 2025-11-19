@@ -4,7 +4,7 @@ import { FanNameBadge, SectionTitle } from "../util/Text";
 
 const FanSection = () => {
   return (
-    <div className="w-full max-w-[450px]">
+    <div className="w-full max-w-[450px] bg-white shadow">
       <SectionTitle text="FANS" />
 
       <div className="flex flex-col gap-2 p-3">

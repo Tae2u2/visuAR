@@ -4,7 +4,7 @@ import { RxDoubleArrowRight } from "react-icons/rx";
 
 const Artist = () => {
   return (
-    <div className="w-full">
+    <div className="w-full bg-white shadow">
       <div className="flex justify-between items-center px-5 py-3 bg-blue-700 text-white">
         <ul className="flex gap-3 text-sm font-medium">
           <li>

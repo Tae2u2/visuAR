@@ -7,7 +7,7 @@ import { Button } from "../util/Custom";
 const ArtistSection = () => {
   const [artistName, setArtistName] = useState("나는야쿼까");
   return (
-    <div className="w-full max-w-[350px]">
+    <div className="w-full max-w-[350px] bg-white shadow">
       <SectionTitle text={"ARTIST"} />
       <div className="p-3">
         <form>

@@ -9,7 +9,7 @@ const LivePage = () => {
         <iframe
           src="face-filter/index.html"
           width="800px"
-          height="800px"
+          height="750px"
           className="border-0 w-full"
         />
         <LiveAskList />

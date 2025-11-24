@@ -1,91 +1,21 @@
-# VisuAR 🎭
+# VisuAR ADMIN
 
-**카메라 필터와 그 사용량 분석 서비스**
+**팬 커뮤니티 컨셉 어드민 UI 작업 **
 
-> 실시간 얼굴 인식 기반 카메라 필터를 적용하고, 사용량 데이터를 수집하여
-> 대시보드와 3D 시각화를 통해 분석하는 웹 애플리케이션입니다.
+> 대시보드, 차트, 달력, 필터포함 카메라 화면, 리스트, 사이드바 UI 적용된 페이지입니다.
+<img width="600" height="1787" alt="admin" src="https://github.com/user-attachments/assets/edc2a357-16fe-4e85-8f57-d0e81e9350b6" />
 
----
 
-## 📂 프로젝트 구조
 
-```bash
-ar-visualization-app/
-├── app/                        # Next.js App Router
-│   ├── page.tsx                # 홈 (카메라 + 필터)
-│   ├── studio/page.tsx         # 필터 선택 & 체험
-│   ├── dashboard/page.tsx      # 데이터 시각화 (통계/3D)
-│   └── api/                    # 서버 API
-│       ├── usage/route.ts      # 필터 사용 기록 저장
-│       └── stats/route.ts      # 통계 데이터 제공
-│
-├── components/
-│   ├── BunnyFilter/            # AR 필터 관련
-│   └── charts/                 # 데이터 시각화 컴포넌트
-│
-├── lib/                        # DB/분석 유틸
-├── public/                     # 모델 파일 & 이미지 리소스
-└── styles/                     # 글로벌 스타일
-```
 
 ---
 
-### 🚀 주요 기능
+## 사용된 라이브러리
 
-1. 🎥 실시간 얼굴 인식: 카메라로 얼굴을 추적하고 AR 필터 적용
-2. 🐰 다양한 필터: 토끼 귀, 안경, 콧수염 등 오버레이 가능
-3. 📊 사용량 수집 & 분석: 필터별 사용 횟수, 시간대별 패턴 기록
-4. 🌐 대시보드 시각화: Recharts로 차트, Three.js로 3D 시각화 제공
-5. 🔒 확장성 있는 구조: Next.js 기반 API & DB 연동 가능
+1. react-chartjs-2 
+2. fullcalendar
+3. media-pipe
 
----
-
-### 🛠️ 기술 스택
-
-- Frontend
-
-Next.js 14 (App Router) <br />
-React 18 <br />
-TailwindCSS + shadcn/ui (UI 컴포넌트) <br />
-Framer Motion (애니메이션) <br />
-
+차트 커스텀, 풀캘린더 활용한 기능 적용
 <br />
-
-- AR / Visualization
-
-face-api.js (얼굴 인식) <br />
-Three.js (3D 데이터 시각화) <br />
-Recharts (차트) <br />
-
-- Backend
-
-Next.js API Routes <br />
-Prisma + [SQLite/PostgreSQL] (데이터 저장) <br />
-
-<br /><br />
-
----
-
-### ⚡ 설치 및 실행
-
-- (준비중)
-
----
-
-### 📊 데이터 시각화 예시
-
-- 가장 많이 사용된 필터 순위표
-
-<br />
-<br />
-
----
-
-### 📝 커밋 컨벤션
-
-- feat: 새로운 기능 추가
-- fix: 버그 수정
-- refactor: 코드 리팩터링 (기능 변화 없음)
-- style: 스타일 수정 (CSS, UI)
-- docs: 문서 작성/수정 (README 등)
-- chore: 설정, 빌드, 라이브러리 업데이트
+3d, 이미지 리소스를 랜드마크를 활용해 얼굴에 적용한 카메라

@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
-    "start": "next start"
+    "start": "next start",
+    "deploy": "next build && next export"
   },
   "dependencies": {
     "@fullcalendar/core": "^6.1.19",

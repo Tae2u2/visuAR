@@ -3,21 +3,21 @@ import { Inter, Noto_Sans, Roboto } from "next/font/google";
 import "./globals.css";
 import Provider from "@/components/layout/Provider";
 
-export const roboto = Roboto({
+const roboto = Roboto({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
   variable: "--font-roboto",
   display: "swap",
 });
 
-export const inter = Inter({
+const inter = Inter({
   weight: ["400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
 });
 
-export const notoSansKR = Noto_Sans({
+const notoSansKR = Noto_Sans({
   weight: ["400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
   variable: "--font-noto-sans-kr",
